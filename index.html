@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+    <!-- reset -->
+    <link rel="stylesheet" href="./css/reset.css">
+    <!-- fonts -->
+    <link rel="stylesheet" href="./css/fonts.css">
+    <!-- swiper -->
+    <link rel="stylesheet" href="./css/swiper-bundle.min.css">
+    <title>Domino's</title>
+    <style>
+        :root{
+            font-family: 'Noto Sans KR';
+            font-weight: 500;
+            font-size: 15px;
+            color: #000;
+            line-height: 1.2;
+
+            --color01: #0078ae;
+            --color02: #e51737;
+        }
+        #wrap{
+            overflow: hidden;
+        }
+        .container{
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header .container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+        .header h1{
+            align-self: center;
+        }
+        .header .logo img{
+            width: 150px;
+        }
+        .header .btn-nav{
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+        .header .nav-close{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: none;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            z-index: 101;
+        }
+        .header nav{
+            display: none;
+            z-index: 100;
+        }
+        .header nav ul{
+            position: absolute;
+            top: 20px;
+            right: 10px;
+            width: 200px;
+            height: 300px;
+            border-radius: 10%;
+            display: grid;
+            gap: 20px;
+            align-items: center;
+            justify-items: center;
+            background: var(--color01);
+        }
+        .header nav ul li{
+            transition: 0.3s;
+            color: #fff;
+        }
+        .header nav ul li:hover{
+            transform: scale(1.2);
+        }
+
+        .sec02 .container{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            text-align: center;
+        }
+        .sec02 .order-items svg{
+            width: 50px;
+            height: 50px;
+            fill: var(--color01);
+        }
+        .sec02 .order-items svg:hover{
+            fill: var(--color02);
+        }
+        .sec02 .order-items p{
+            padding-top: 15px;
+        }
+
+        .sec03 .container{
+            display: grid;
+            grid-template-rows: repeat(2,1fr);
+            gap: 20px;
+        }
+        .sec03 .l-benefit{
+            justify-self: center;
+            align-self: center;
+        }
+        .sec03 .l-benefit p{
+            font-size: 25px;
+            line-height: 1.5;
+            padding-bottom: 10px;
+        }
+        .sec03 .l-benefit p span{
+            color: var(--color01);
+        }
+        .sec03 .l-benefit button{
+            width: 100px;
+            height: 35px;
+            border: none;
+            border-radius: 30px;
+            background: var(--color01);
+            color: #fff;
+            cursor: pointer;
+        }
+        .sec03 .r-b-items{
+            gap: 10px;
+        }
+        .sec03 .r-benefit{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-area: 2/1/3/2;
+            gap: 5px;
+        }
+
+        .sec04{
+            padding: 20px;
+        }
+        .bottom-swiper{
+            max-width:1280px;
+            margin:0 auto;
+        }
+
+        .footer{
+            border-top: 2px solid var(--color01);
+        }
+        .footer .footer-top .container{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+        .footer .footer-top .img-box{
+            width: 150px;
+            height: 30px;
+        }
+        .footer .footer-top p{
+            justify-self: center;
+            align-self: center;
+            font-weight: 600;
+            font-size: 25px;
+            grid-area: 1/2/2/-1;
+            white-space: nowrap;
+        }
+        .footer .footer-top ul{
+            padding: 20px 0;
+            border-top: 1px solid var(--color01);
+            border-bottom: 1px solid var(--color01);
+            grid-area: 2/1/3/-1;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 10px;
+            text-align: center;
+            align-items: center;
+        }
+        .footer .footer-top ul li{
+            font-size: 13px;
+        }
+        .footer address{
+            grid-area: 3/1/4/-1;
+            font-size: 12px;
+        }
+        .footer .footer-bottom{
+            border-top: 2px solid var(--color01);
+        }
+        .footer .footer-bottom ul{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap:10px;
+            text-align: center;
+            align-items: center;
+        }
+        .footer .footer-bottom ul li{
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content:space-between;
+            align-items: center;
+        }
+        .footer .footer-bottom ul li .img-box{
+            width:16px;
+        }
+        .footer .footer-bottom ul li p{
+            width:calc(100% - 16px - 2px);
+        }
+        .footer .footer-bottom p{
+            font-size: 10px;
+        }
+
+
+
+        @media (min-width:768px){
+            .header nav ul{
+                display: flex;
+                gap: 50px;
+                top: -110px;
+                right: 500px;
+                white-space: nowrap;
+                background: none;
+            }
+            .header nav ul li{
+                color: var(--color01);
+            }
+            .sec02 .order-items svg{
+            width: 100px;
+            height: 100px;
+            }
+            .sec03 .l-benefit{
+                display: grid;
+                grid-template-columns: repeat(2,1fr);
+                gap: 50px;
+                align-items: center;
+                justify-items: center;
+            }
+        }
+
+
+
+        @media (min-width:1280px){
+            .header .btn-nav{
+                display: none;
+            }
+            .header nav{
+                display: block;
+            }
+            .sec03 .container{
+                grid-template-columns: repeat(2,1fr);
+                grid-template-rows: none;
+            }
+            .sec03 .l-benefit{
+                gap: 10px;
+                justify-self: left;
+            }
+            .sec03 .r-benefit{
+                grid-area: 1/2/2/-1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section id="wrap">
+        <section class="header">
+            <div class="container">
+                <h1 class="logo"><a href="./index.html"><img src="./images/domino-logo.svg" alt="도미노 로고"></a></h1>
+                <div class="btn-nav"><img src="./images/btn-nav.svg" alt="버튼 네비"></div>
+                <div class="nav-close"><img src="./images/x.svg" alt="네비 닫기"></div>
+                <nav>
+                    <ul>
+                        <li><a href="#">메뉴</a></li>
+                        <li><a href="#">e-쿠폰</a></li>
+                        <li><a href="#">상품권 선물</a></li>
+                        <li><a href="#">이벤트 및 제휴</a></li>
+                        <li><a href="#">매장검색</a></li>
+                        <li><a href="#">가맹점 모집</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+        <section class="sec sec01 wrap-swiper swiper">
+            <ul class="swiper-wrapper">
+                <li class="swiper-slide"><a href="#"><img src="./images/m-slide06.png" alt="슬라이드01"></a></li>
+                <li class="swiper-slide"><a href="#"><img src="./images/m-slide01.png" alt="슬라이드02"></a></li>
+                <li class="swiper-slide"><a href="#"><img src="./images/m-slide02.png" alt="슬라이드03"></a></li>
+                <li class="swiper-slide"><a href="#"><img src="./images/m-slide03.png" alt="슬라이드04"></a></li>
+                <li class="swiper-slide"><a href="#"><img src="./images/m-slide04.png" alt="슬라이드05"></a></li>
+                <li class="swiper-slide"><a href="#"><img src="./images/m-slide05.png" alt="슬라이드06"></a></li>
+            </ul>
+        </section>
+        <section class="sec sec02 order-menu">
+            <div class="container">
+                <div class="order-items order-item01">
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="20" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M280 32c-13.3 0-24 10.7-24 24s10.7 24 24 24h57.7l16.4 30.3L256 192l-45.3-45.3c-12-12-28.3-18.7-45.3-18.7H64c-17.7 0-32 14.3-32 32v32h96c88.4 0 160 71.6 160 160c0 11-1.1 21.7-3.2 32h70.4c-2.1-10.3-3.2-21-3.2-32c0-52.2 25-98.6 63.7-127.8l15.4 28.6C402.4 276.3 384 312 384 352c0 70.7 57.3 128 128 128s128-57.3 128-128s-57.3-128-128-128c-13.5 0-26.5 2.1-38.7 6L418.2 128H480c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32H459.6c-7.5 0-14.7 2.6-20.5 7.4L391.7 78.9l-14-26c-7-12.9-20.5-21-35.2-21H280zM462.7 311.2l28.2 52.2c6.3 11.7 20.9 16 32.5 9.7s16-20.9 9.7-32.5l-28.2-52.2c2.3-.3 4.7-.4 7.1-.4c35.3 0 64 28.7 64 64s-28.7 64-64 64s-64-28.7-64-64c0-15.5 5.5-29.7 14.7-40.8zM187.3 376c-9.5 23.5-32.5 40-59.3 40c-35.3 0-64-28.7-64-64s28.7-64 64-64c26.9 0 49.9 16.5 59.3 40h66.4C242.5 268.8 190.5 224 128 224C57.3 224 0 281.3 0 352s57.3 128 128 128c62.5 0 114.5-44.8 125.8-104H187.3zM128 384a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg>
+                    </a>
+                    <p>배달주문</p>
+                </div>
+                <div class="order-items order-item02">
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="20" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M547.6 103.8L490.3 13.1C485.2 5 476.1 0 466.4 0H109.6C99.9 0 90.8 5 85.7 13.1L28.3 103.8c-29.6 46.8-3.4 111.9 51.9 119.4c4 .5 8.1 .8 12.1 .8c26.1 0 49.3-11.4 65.2-29c15.9 17.6 39.1 29 65.2 29c26.1 0 49.3-11.4 65.2-29c15.9 17.6 39.1 29 65.2 29c26.2 0 49.3-11.4 65.2-29c16 17.6 39.1 29 65.2 29c4.1 0 8.1-.3 12.1-.8c55.5-7.4 81.8-72.5 52.1-119.4zM499.7 254.9l-.1 0c-5.3 .7-10.7 1.1-16.2 1.1c-12.4 0-24.3-1.9-35.4-5.3V384H128V250.6c-11.2 3.5-23.2 5.4-35.6 5.4c-5.5 0-11-.4-16.3-1.1l-.1 0c-4.1-.6-8.1-1.3-12-2.3V384v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V384 252.6c-4 1-8 1.8-12.3 2.3z"/></svg>
+                    </a>
+                    <p>포장주문</p>
+                </div>
+                <div class="order-items order-item03">
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="20" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288H175.5L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7H272.5L349.4 44.6z"/></svg>
+                    </a>
+                    <p>퀵오더</p>
+                </div>
+            </div>
+        </section>
+        <section class="sec sec03 benefit">
+            <div class="container">
+                <div class="l-benefit">
+                    <p>도미노피자의<br><span>특별한 매니아 혜택</span><br>누려보세요!</p>
+                    <button type="submit">로그인</button>
+                </div>
+                <div class="r-benefit">
+                    <div class="r-b-items r-b-item01"><a href="#"><img src="./images/benefit01.png" alt="회원가입 혜택"></a></div>
+                    <div class="r-b-items r-b-item02"><a href="#"><img src="./images/benefit02.gif" alt="도미노 매니아 혜택"></a></div>
+                    <div class="r-b-items r-b-item03"><a href="#"><img src="./images/benefit03.png" alt="도미노 모멘트"></a></div>
+                </div>
+            </div>
+        </section>
+        <section class="sec sec04 bottom-swiper swiper">
+            <ul class="swiper-wrapper">
+                <li class="swiper-slide">
+                    <a href="#">
+                        <img src="./images/bottom-slide01.jpg" alt="bottom-slide01">
+                    </a>
+                </li>
+                <li class="swiper-slide">
+                    <a href="#">
+                        <img src="./images/bottom-slide02.jpg" alt="bottom-slide02">
+                    </a>
+                </li>
+                <li class="swiper-slide">
+                    <a href="#">
+                        <img src="./images/bottom-slide03.jpg" alt="bottom-slide03">
+                    </a>
+                </li>
+                <li class="swiper-slide">
+                    <a href="#">
+                        <img src="./images/bottom-slide04.jpg" alt="bottom-slide04">
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <section class="footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="img-box"><img src="./images/domino-logo.svg" alt="footer-logo"></div>
+                    <p>1577-3082</p>
+                    <ul>
+                        <li><a href="#">이용약관</a></li>
+                        <li><a href="#">개인정보 처리방침</a><strong></strong></li>
+                        <li><a href="#"><strong>위치기반 서비스</strong></a></li>
+                        <li><a href="#">청소년 보호방침</a></li>
+                        <li><a href="#">영상정보처리기기 운영관리방침</a></li>
+                        <li><a href="#">고객센터</a></li>
+                        <li><a href="#">인재채용</a></li>
+                        <li><a href="#">가맹점모집</a></li>
+                        <li><a href="#">단체주문</a></li>
+                    </ul>
+                    <address>
+                        06223 서울특별시 강남구 역삼로25길 35(역삼동, 청오큐브타워) 청오디피케이㈜｜대표이사 : 오광현,김영훈<br>
+                        사업자 등록번호: 220-81-03371｜통신판매업신고: 강남 5064호｜개인정보 보호책임자 : 윤여진｜민원 책임자 : 임영길<br>
+                        문의 : webmaster@dominos.co.kr<br>
+                        Copyright ⓒ Domino’s Pizza. All rights reserved.<br><br>
+                        청오디피케이㈜의 사전 서면동의 없이 도미노피자 사이트(PC, 모바일, 앱)의 일체의 정보, 콘텐츠 및 UI 등을 상업적 목적으로 전재, 전송, 스크래핑 등 무단 사용할 수 없습니다.<br>
+                        도미노피자에서 판매되는 모든 상품은 청오디피케이㈜에서 책임지고 있습니다.
+                    </address>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <ul>
+                        <li>
+                            <div class="img-box"><img src="./images/award01.png" alt="award01"></div>
+                            <p>식품안전 경영시스템 인증</p>
+                        </li>
+                        <li>
+                            <div class="img-box"><img src="./images/award02.png" alt="award02"></div>
+                            <p>지식경제부 우수디자인 선정</p>
+                        </li>
+                        <li>
+                            <div class="img-box"><img src="./images/award03.png" alt="award03"></div>
+                            <p>2022년 고객이 가장 추천하는 기업 피자전문점 부문 10년 연속 1위</p>
+                        </li>
+                        <li>
+                            <div class="img-box"><img src="./images/award04.png" alt="award04"></div>
+                            <p>2023년 한국산업 고객만족도 피자전문점 부문 9년 연속 1위</p>
+                        </li>
+                        <li>
+                            <div class="img-box"><img src="./images/award05.png" alt="award05"></div>
+                            <p>2023 프리미엄브랜드지수 피자전문점 부문 8년 연속 1위 수상</p>
+                        </li>
+                        <li>
+                            <div class="img-box"><img src="./images/award06.png" alt="award06"></div>
+                            <p>대학생 1000명이 선택한 2019 올해의 핫 브랜드 캠퍼스 잡앤조이 선정</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- jquery -->
+    <script src="./js/jquery.min.js"></script>
+    <!-- swiper -->
+    <script src="./js/swiper-bundle.min.js"></script>
+    <script>
+        // main-slide
+        var wrapSwiper = new Swiper(".wrap-swiper",{
+            slidesPerView: 1,
+            autoplay: {
+                delay:3000,
+            },
+        });
+
+        // bottom-slide
+        var bottomSwiper = new Swiper(".bottom-swiper",{
+            slidesPerView: 1.5,
+            spaceBetween: 20,
+            loop:true,
+            breakpoints: {
+                // when window width is >= 590px
+                590: {
+                    slidesPerView: 1.9,                
+                },
+                760: {
+                    slidesPerView: 2.5,                
+                },
+                960:{
+                    slidesPerView: 4,
+                }
+            }
+        });
+
+        // 네비게이션 동작
+        $('.btn-nav img').click(function(){
+            $('.btn-nav img').hide();
+            $('.nav-close').show();
+            $('nav').addClass('active');
+            $('nav').fadeIn(300);
+            $('nav').slideDown(300);
+            $('nav').show(300);
+        })
+
+        $('.nav-close').click(function(){
+            $('.btn-nav img').show();
+            $('.nav-close').hide();
+            $('nav').removeClass('active');
+            $('nav').fadeOut(300);
+            $('nav').slideUp(300);
+            $('nav').hide(300);
+        })
+        
+    </script>
+</body>
+</html>
